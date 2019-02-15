@@ -1,0 +1,19 @@
+{
+    "name": "matiere-noire/wp-slider",
+    "description": "Block slider",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Arnaud Banvillet",
+            "email": "arnaud@matierenoire.io"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "scripts": {
+        "post-root-package-install": [
+            "yarn install"
+        ]
+    }
+}
