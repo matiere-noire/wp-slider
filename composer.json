@@ -12,7 +12,7 @@
     "minimum-stability": "stable",
     "require": {},
     "scripts": {
-        "post-root-package-install": [
+        "post-update-cmd": [
             "yarn install"
         ]
     }
