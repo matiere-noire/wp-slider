@@ -12,4 +12,19 @@
     right: 0;
     background-color: rgba(255,255,255,0.6);
   }
+
+  .slick-arrow{
+    height: 30px;
+    width: 30px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .slick-prev{
+    background-image: url(../svg/left-arrow.svg);
+  }
+
+  .slick-next{
+    background-image: url(../svg/right-arrow.svg);
+  }
 }
