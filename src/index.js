@@ -22,6 +22,7 @@ registerBlockType("matiere-noir/slider", {
       source: 'attribute',
       selector: 'div',
       attribute: 'data-slick',
+      default: '{}'
     }
   },
 
