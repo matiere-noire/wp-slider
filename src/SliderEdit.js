@@ -5,8 +5,7 @@ const { InspectorControls, InnerBlocks } = wp.editor
 const { PanelBody, PanelRow, Button, ToggleControl } = wp.components
 const { withDispatch, withSelect } = wp.data
 
-const SliderEdit = ( props ) => {
-  
+const SliderEdit = props => {
   const { insertBlock, removeBlock, getBlock, clientId, className, attributes, setAttributes } = props
   const addSlide = () => {
     const block = createBlock('matiere-noir/slide')
@@ -23,7 +22,7 @@ const SliderEdit = ( props ) => {
   const dataSlick = JSON.parse(attributes.dataSlick)
 
   const updateDataSlick = dataSlickElem => {
-    const updatedDataSlick = { ...dataSlick, ...dataSlickElem }
+    const updatedDataSlick = { ...dataSlick, ...dataSlickElem, autoplay: true }
     setAttributes({ dataSlick: JSON.stringify(updatedDataSlick) })
   }
 
@@ -54,12 +53,12 @@ const SliderEdit = ( props ) => {
           </PanelRow>
         </PanelBody>
       </InspectorControls>
-      <div className={className}>      
+      <div className={className}>
         {typeof props.insertBlocksAfter !== 'undefined' ? (
           <InnerBlocks allowedBlocks={['matiere-noir/slide']} templateInsertUpdatesSelection={false} />
         ) : (
           <div />
-        ) }        
+        )}
       </div>
     </Fragment>
   )
