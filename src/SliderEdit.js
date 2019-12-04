@@ -2,7 +2,7 @@ const { createElement, Fragment } = wp.element
 const { compose } = wp.compose
 const { createBlock } = wp.blocks
 const { InspectorControls, InnerBlocks } = wp.editor
-const { PanelBody, PanelRow, Button, ToggleControl } = wp.components
+const { PanelBody, PanelRow, Button, ToggleControl, TextControl } = wp.components
 const { withDispatch, withSelect } = wp.data
 
 const SliderEdit = props => {
@@ -22,7 +22,7 @@ const SliderEdit = props => {
   const dataSlick = JSON.parse(attributes.dataSlick)
 
   const updateDataSlick = dataSlickElem => {
-    const updatedDataSlick = { ...dataSlick, ...dataSlickElem, autoplay: true }
+    const updatedDataSlick = { ...dataSlick, ...dataSlickElem }
     setAttributes({ dataSlick: JSON.stringify(updatedDataSlick) })
   }
 
@@ -51,14 +51,43 @@ const SliderEdit = props => {
               onChange={() => updateDataSlick({ arrows: !dataSlick.arrows })}
             />
           </PanelRow>
+          <PanelRow>
+            <ToggleControl
+              label="Lecture automatique"
+              help={
+                dataSlick.autoplay
+                  ? "Avec lecture automatique"
+                  : "Pas de lecture automatique"
+              }
+              checked={dataSlick.autoplay}
+              onChange={() =>
+                updateDataSlick({
+                  autoplay: !dataSlick.autoplay,
+                  autoplaySpeed: 3000
+                })
+              }
+            />
+          </PanelRow>
+          {dataSlick.autoplay && (
+            <PanelRow>
+              <TextControl
+                label="Vitesse de la lecture automatique"
+                help={"La valeur est en ms"}
+                type="number"
+                min="0"
+                value={dataSlick.autoplaySpeed}
+                onChange={v => updateDataSlick({ autoplaySpeed: v })}
+              />
+            </PanelRow>
+          )}
         </PanelBody>
       </InspectorControls>
       <div className={className}>
         {typeof props.insertBlocksAfter !== 'undefined' ? (
           <InnerBlocks allowedBlocks={['matiere-noir/slide']} templateInsertUpdatesSelection={false} />
         ) : (
-          <div />
-        )}
+            <div />
+          )}
       </div>
     </Fragment>
   )
